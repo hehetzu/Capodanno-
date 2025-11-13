@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Capodanno 2025 - Scegli il Menu</title>
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin:0;
+  padding:0;
+  background: #ffffff;
+  color: #1a1a2e;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h1, h2 {
+  color: #e43f5a;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.step {
+  display: none;
+  margin: 20px auto;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 20px;
+  max-width: 600px;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.step.active {
+  display: block;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+.scelta {
+  margin: 15px 0;
+  padding: 12px 15px;
+  border-radius: 15px;
+  background: #ffe3e3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.scelta:hover {
+  background: #f6a5a5;
+  transform: scale(1.05);
+}
+
+input[type="text"] {
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  outline: none;
+  width: 70%;
+  margin-left: 10px;
+}
+
+button {
+  padding: 12px 30px;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  background: #e43f5a;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 5px 10px rgba(228,63,90,0.5);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 8px 20px rgba(228,63,90,0.7);
+}
+
+#menuFinale {
+  font-size: 20px;
+  margin-top: 20px;
+  background: #fce4ec;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(228,63,90,0.4);
+}
+
+.bottle, .bicchiere {
+  transition: all 0.5s ease;
+  margin: 0 10px;
+}
+
+.bottle:hover {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+.bicchiere:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+</style>
+</head>
+<body>
+
+<h1>🎉 Festa di Capodanno 2025 🎉</h1>
+
+<div class="step active" id="step1">
+  <h2>Benvenuto! Inserisci il tuo nome</h2>
+  <input type="text" id="nome" placeholder="Il tuo nome">
+  <br>
+  <button onclick="vaiAStep('step2')">Avanti ➡️</button>
+</div>
+
+<div class="step" id="step2">
+  <h2>Pizza?</h2>
+  <div class="scelta"><label><input type="radio" name="pizza" value="Si"> Sì</label></div>
+  <div class="scelta"><label><input type="radio" name="pizza" value="No"> No</label></div>
+  <button onclick="gestisciPizza()">Avanti ➡️</button>
+</div>
+
+<div class="step" id="step3">
+  <h2>Antipasto</h2>
+  <div class="scelta"><label><input type="radio" name="antipasto" value="Cocktail di gamberi"> Cocktail di gamberi</label></div>
+  <div class="scelta"><label><input type="radio" name="antipasto" value="Tartine burro e salmone"> Tartine burro e salmone</label></div>
+  <div class="scelta"><label><input type="radio" name="antipasto" value="Vol-au-vent con fonduta"> Vol-au-vent con fonduta</label></div>
+  <div class="scelta">
+    <label><input type="radio" name="antipasto" value="Altro"> Altro: </label>
+    <input type="text" id="antipastoAltro" placeholder="Inserisci la tua idea">
+  </div>
+  <button onclick="gestisciScelta('antipasto','step4')">Avanti ➡️</button>
+</div>
+
+<div class="step" id="step4">
+  <h2>Primo</h2>
+  <div class="scelta"><label><input type="radio" name="primo" value="Agnolotti con funghi"> Agnolotti con funghi</label></div>
+  <div class="scelta"><label><input type="radio" name="primo" value="Agnolotti con carne al sugo"> Agnolotti con carne al sugo</label></div>
+  <div class="scelta"><label><input type="radio" name="primo" value="Tagliatelle ai funghi"> Tagliatelle ai funghi</label></div>
+  <div class="scelta">
+    <label><input type="radio" name="primo" value="Altro"> Altro: </label>
+    <input type="text" id="primoAltro" placeholder="Inserisci la tua idea">
+  </div>
+  <button onclick="gestisciScelta('primo','step5')">Avanti ➡️</button>
+</div>
+
+<div class="step" id="step5">
+  <h2>Secondo</h2>
+  <div class="scelta"><label><input type="radio" name="secondo" value="Cappello del prete al Barolo con polenta"> Cappello del prete al Barolo con polenta</label></div>
+  <div class="scelta"><label><input type="radio" name="secondo" value="Polenta con formaggio"> Polenta con formaggio</label></div>
+  <div class="scelta"><label><input type="radio" name="secondo" value="Arrosto con patate alla duchessa"> Arrosto con patate alla duchessa</label></div>
+  <div class="scelta">
+    <label><input type="radio" name="secondo" value="Altro"> Altro: </label>
+    <input type="text" id="secondoAltro" placeholder="Inserisci la tua idea">
+  </div>
+  <button onclick="gestisciScelta('secondo','step6')">Avanti ➡️</button>
+</div>
+
+<div class="step" id="step6">
+  <h2>Dolce</h2>
+  <div class="scelta"><label><input type="radio" name="dolce" value="Panettone"> Panettone</label></div>
+  <div class="scelta"><label><input type="radio" name="dolce" value="Pandoro"> Pandoro</label></div>
+  <div class="scelta">
+    <label><input type="radio" name="dolce" value="Altro"> Altro: </label>
+    <input type="text" id="dolceAltro" placeholder="Inserisci la tua idea">
+  </div>
+  <button onclick="gestisciScelta('dolce','step7')">Avanti ➡️</button>
+</div>
+
+<div class="step" id="step7">
+  <h2>Fuochi d'artificio</h2>
+  <div class="scelta"><label><input type="radio" name="fuochi" value="Sì"> Sì</label></div>
+  <div class="scelta"><label><input type="radio" name="fuochi" value="No"> No</label></div>
+  <button onclick="gestisciScelta('fuochi','step8')">Avanti ➡️</button>
+</div>
+
+<div class="step" id="step8">
+  <h2>🎆 Menù Consigliato 🎆</h2>
+  <div id="menuFinale"></div>
+  <canvas id="confetti-canvas"></canvas>
+  <div>
+    <img src="https://i.imgur.com/OuF5eUn.png" width="100" class="bottle" style="cursor:pointer" onclick="stappaBottiglia()">
+    <img src="https://i.imgur.com/zYVjD0q.png" width="50" class="bicchiere" style="cursor:pointer" onclick="cinCin()">
+  </div>
+</div>
+
+<script>
+let voti = {pizza:{}, antipasto:{}, primo:{}, secondo:{}, dolce:{}, fuochi:{}};
+
+function vaiAStep(step){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById(step).classList.add('active');
+}
+
+function gestisciPizza(){
+  let s = document.querySelector('input[name="pizza"]:checked');
+  if(!s) return alert("Scegli pizza sì o no!");
+  voti.pizza[s.value] = (voti.pizza[s.value]||0)+1;
+  if(s.value==="Si") {
+    voti.antipasto = {"-":0}; voti.primo = {"-":0}; voti.secondo = {"-":0}; voti.dolce = {"-":0};
+    vaiAStep('step7'); // Salta menu se pizza
+  } else {
+    vaiAStep('step3');
+  }
+}
+
+function gestisciScelta(categoria,nextStep){
+  let s = document.querySelector(`input[name="${categoria}"]:checked`);
+  if(!s) return alert("Seleziona un'opzione!");
+  let scelta = s.value;
+  if(scelta==="Altro"){
+    const testo = document.getElementById(categoria+"Altro").value.trim();
+    if(!testo) return alert("Inserisci la tua idea!");
+    scelta = testo;
+  }
+  voti[categoria][scelta] = (voti[categoria][scelta]||0)+1;
+  if(nextStep) vaiAStep(nextStep);
+  if(nextStep==="step8") mostraMenu();
+}
+
+function mostraMenu(){
+  let menu = {};
+  for(let categoria in voti){
+    let max=0, scelta="-";
+    for(let op in voti[categoria]){
+      if(voti[categoria][op]>max){ max=voti[categoria][op]; scelta=op;}
+    }
+    menu[categoria] = scelta;
+  }
+  let html = `
+    <p>Pizza: ${menu.pizza}</p>
+    <p>Antipasto: ${menu.antipasto}</p>
+    <p>Primo: ${menu.primo}</p>
+    <p>Secondo: ${menu.secondo}</p>
+    <p>Dolce: ${menu.dolce}</p>
+    <p>Fuochi: ${menu.fuochi}</p>
+  `;
+  document.getElementById('menuFinale').innerHTML = html;
+  startConfetti();
+}
+
+function startConfetti(){
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  let confetti = [];
+  for(let i=0;i<150;i++){
+    confetti.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*6+4, d:Math.random()*100, color:`hsl(${Math.random()*360},100%,50%)`, tilt:Math.random()*10-10});
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    confetti.forEach(c=>{
+      ctx.beginPath();
+      ctx.lineWidth = c.r/2;
+      ctx.strokeStyle = c.color;
+      ctx.moveTo(c.x+c.tilt+c.r/4,c.y);
+      ctx.lineTo(c.x+c.tilt,c.y+c.r/2);
+      ctx.stroke();
+      c.y += Math.cos(c.d)+1+c.r/2;
+      c.x += Math.sin(c.d);
+      if(c.y>canvas.height){c.y=0;c.x=Math.random()*canvas.width;}
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+function stappaBottiglia(){
+  alert("🍾 Bottiglia stappata!");
+}
+
+function cinCin(){
+  alert("🥂 Cin cin!");
+}
+</script>
+
+</body>
+</html>
